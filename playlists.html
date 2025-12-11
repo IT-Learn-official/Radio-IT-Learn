@@ -238,6 +238,7 @@
 
     <script>
         // Sample playlist data - In a real application, this would come from an API
+        // NOTE: The URLs below are placeholders and should be replaced with actual playlist URLs
         const playlists = [
             {
                 id: 1,
@@ -374,8 +375,8 @@
                             </span>
                             <span class="track-count">${playlist.trackCount} tracks</span>
                         </div>
-                        <a href="${playlist.link}" target="_blank" class="playlist-link">
-                            Listen Now
+                        <a href="${playlist.link}" target="_blank" rel="noopener noreferrer" class="playlist-link" aria-label="Open ${playlist.title} playlist in ${playlist.platform} (opens in new window)">
+                            Listen Now ↗
                         </a>
                     </div>
                 </div>

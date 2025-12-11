@@ -225,14 +225,115 @@
 
     <script>
         const playlists = [
-            { id: 1, title: "Tech Beats", description: "The perfect coding soundtrack with electronic and ambient music to keep you focused.", platform: "spotify", trackCount: 42, link: "#", icon: "🎧" },
-            { id: 2, title: "Learning Lounge", description: "Relaxing instrumental music for studying and learning new technologies.", platform: "youtube", trackCount: 35, link: "#", icon: "📚" },
-            { id: 3, title: "Developer's Mix", description: "A curated mix of indie, electronic, and lo-fi tracks for productive coding sessions.", platform: "apple", trackCount: 50, link: "#", icon: "💻" },
-            { id: 4, title: "Morning Code", description: "Energetic tunes to start your coding day with motivation and enthusiasm.", platform: "spotify", trackCount: 28, link: "#", icon: "☀️" },
-            { id: 5, title: "Debug Mode", description: "Calm and focused music to help you solve those tricky bugs and problems.", platform: "soundcloud", trackCount: 38, link: "#", icon: "🐛" },
-            { id: 6, title: "Late Night Coding", description: "Ambient and downtempo tracks for those late-night coding marathons.", platform: "youtube", trackCount: 45, link: "#", icon: "🌙" },
-            { id: 7, title: "IT Radio Classics", description: "Classic rock and alternative hits that keep the energy high during development.", platform: "deezer", trackCount: 60, link: "#", icon: "🎸" },
-        ];
+        {
+                id: 1,
+                title: "Tech Beats",
+                description: "The perfect coding soundtrack with electronic and ambient music to keep you focused.",
+                platform: "spotify",
+                trackCount: 42,
+                link: "https://open.spotify.com/playlist/example1",
+                icon: "🎧"
+            },
+            {
+                id: 2,
+                title: "Learning Lounge",
+                description: "Relaxing instrumental music for studying and learning new technologies.",
+                platform: "youtube",
+                trackCount: 35,
+                link: "https://youtube.com/playlist?list=example2",
+                icon: "📚"
+            },
+            {
+                id: 3,
+                title: "Developer's Mix",
+                description: "A curated mix of indie, electronic, and lo-fi tracks for productive coding sessions.",
+                platform: "apple",
+                trackCount: 50,
+                link: "https://music.apple.com/playlist/example3",
+                icon: "💻"
+            },
+            {
+                id: 4,
+                title: "Morning Code",
+                description: "Energetic tunes to start your coding day with motivation and enthusiasm.",
+                platform: "spotify",
+                trackCount: 28,
+                link: "https://open.spotify.com/playlist/example4",
+                icon: "☀️"
+            },
+            {
+                id: 5,
+                title: "Debug Mode",
+                description: "Calm and focused music to help you solve those tricky bugs and problems.",
+                platform: "soundcloud",
+                trackCount: 38,
+                link: "https://soundcloud.com/playlist/example5",
+                icon: "🐛"
+            },
+            {
+                id: 6,
+                title: "Late Night Coding",
+                description: "Ambient and downtempo tracks for those late-night coding marathons.",
+                platform: "youtube",
+                trackCount: 45,
+                link: "https://youtube.com/playlist?list=example6",
+                icon: "🌙"
+            },
+            {
+                id: 7,
+                title: "IT Radio Classics",
+                description: "Classic rock and alternative hits that keep the energy high during development.",
+                platform: "deezer",
+                trackCount: 60,
+                link: "https://deezer.com/playlist/example7",
+                icon: "🎸"
+            },
+            {
+                id: 8,
+                title: "JavaScript Jams",
+                description: "Upbeat and modern tracks for frontend developers and JavaScript enthusiasts.",
+                platform: "spotify",
+                trackCount: 33,
+                link: "https://open.spotify.com/playlist/example8",
+                icon: "⚡"
+            },
+            {
+                id: 9,
+                title: "Python Grooves",
+                description: "Smooth jazz and funk beats for Python developers and data scientists.",
+                platform: "apple",
+                trackCount: 41,
+                link: "https://music.apple.com/playlist/example9",
+                icon: "🐍"
+            },
+            {
+                id: 10,
+                title: "DevOps Vibes",
+                description: "Electronic and techno music for system administrators and DevOps engineers.",
+                platform: "soundcloud",
+                trackCount: 37,
+                link: "https://soundcloud.com/playlist/example10",
+                icon: "⚙️"
+            },
+            {
+                id: 11,
+                title: "Algorithm Anthems",
+                description: "Intense and rhythmic music for tackling complex algorithms and data structures.",
+                platform: "youtube",
+                trackCount: 29,
+                link: "https://youtube.com/playlist?list=example11",
+                icon: "🧮"
+            },
+            {
+                id: 12,
+                title: "Database Dreams",
+                description: "Chill and structured music for database design and optimization work.",
+                platform: "deezer",
+                trackCount: 44,
+                link: "https://deezer.com/playlist/example12",
+                icon: "🗄️"
+            }
+         ];
 
         function renderPlaylists(filter='all') {
             const grid = document.getElementById('playlistsGrid');

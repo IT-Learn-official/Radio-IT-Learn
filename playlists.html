@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio IT Learn - Playlists</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .filter-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .filter-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .playlists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .playlist-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .playlist-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+        }
+
+        .playlist-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            color: white;
+        }
+
+        .playlist-content {
+            padding: 20px;
+        }
+
+        .playlist-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .playlist-description {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .playlist-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .platform-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .platform-spotify {
+            background: #1DB954;
+            color: white;
+        }
+
+        .platform-youtube {
+            background: #FF0000;
+            color: white;
+        }
+
+        .platform-apple {
+            background: #FA243C;
+            color: white;
+        }
+
+        .platform-soundcloud {
+            background: #FF5500;
+            color: white;
+        }
+
+        .platform-deezer {
+            background: #FF0092;
+            color: white;
+        }
+
+        .track-count {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .playlist-link {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .playlist-link:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        .no-results {
+            text-align: center;
+            color: white;
+            font-size: 1.5em;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .playlists-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎵 Radio IT Learn Playlists</h1>
+            <p class="subtitle">Discover our curated playlists across multiple streaming platforms</p>
+        </header>
+
+        <div class="filter-section">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-platform="all">All Platforms</button>
+                <button class="filter-btn" data-platform="spotify">Spotify</button>
+                <button class="filter-btn" data-platform="youtube">YouTube</button>
+                <button class="filter-btn" data-platform="apple">Apple Music</button>
+                <button class="filter-btn" data-platform="soundcloud">SoundCloud</button>
+                <button class="filter-btn" data-platform="deezer">Deezer</button>
+            </div>
+        </div>
+
+        <div class="playlists-grid" id="playlistsGrid"></div>
+    </div>
+
+    <script>
+        // Sample playlist data - In a real application, this would come from an API
+        // NOTE: The URLs below are placeholders and should be replaced with actual playlist URLs
+        const playlists = [
+            {
+                id: 1,
+                title: "Tech Beats",
+                description: "The perfect coding soundtrack with electronic and ambient music to keep you focused.",
+                platform: "spotify",
+                trackCount: 42,
+                link: "https://open.spotify.com/playlist/example1",
+                icon: "🎧"
+            },
+            {
+                id: 2,
+                title: "Learning Lounge",
+                description: "Relaxing instrumental music for studying and learning new technologies.",
+                platform: "youtube",
+                trackCount: 35,
+                link: "https://youtube.com/playlist?list=example2",
+                icon: "📚"
+            },
+            {
+                id: 3,
+                title: "Developer's Mix",
+                description: "A curated mix of indie, electronic, and lo-fi tracks for productive coding sessions.",
+                platform: "apple",
+                trackCount: 50,
+                link: "https://music.apple.com/playlist/example3",
+                icon: "💻"
+            },
+            {
+                id: 4,
+                title: "Morning Code",
+                description: "Energetic tunes to start your coding day with motivation and enthusiasm.",
+                platform: "spotify",
+                trackCount: 28,
+                link: "https://open.spotify.com/playlist/example4",
+                icon: "☀️"
+            },
+            {
+                id: 5,
+                title: "Debug Mode",
+                description: "Calm and focused music to help you solve those tricky bugs and problems.",
+                platform: "soundcloud",
+                trackCount: 38,
+                link: "https://soundcloud.com/playlist/example5",
+                icon: "🐛"
+            },
+            {
+                id: 6,
+                title: "Late Night Coding",
+                description: "Ambient and downtempo tracks for those late-night coding marathons.",
+                platform: "youtube",
+                trackCount: 45,
+                link: "https://youtube.com/playlist?list=example6",
+                icon: "🌙"
+            },
+            {
+                id: 7,
+                title: "IT Radio Classics",
+                description: "Classic rock and alternative hits that keep the energy high during development.",
+                platform: "deezer",
+                trackCount: 60,
+                link: "https://deezer.com/playlist/example7",
+                icon: "🎸"
+            },
+            {
+                id: 8,
+                title: "JavaScript Jams",
+                description: "Upbeat and modern tracks for frontend developers and JavaScript enthusiasts.",
+                platform: "spotify",
+                trackCount: 33,
+                link: "https://open.spotify.com/playlist/example8",
+                icon: "⚡"
+            },
+            {
+                id: 9,
+                title: "Python Grooves",
+                description: "Smooth jazz and funk beats for Python developers and data scientists.",
+                platform: "apple",
+                trackCount: 41,
+                link: "https://music.apple.com/playlist/example9",
+                icon: "🐍"
+            },
+            {
+                id: 10,
+                title: "DevOps Vibes",
+                description: "Electronic and techno music for system administrators and DevOps engineers.",
+                platform: "soundcloud",
+                trackCount: 37,
+                link: "https://soundcloud.com/playlist/example10",
+                icon: "⚙️"
+            },
+            {
+                id: 11,
+                title: "Algorithm Anthems",
+                description: "Intense and rhythmic music for tackling complex algorithms and data structures.",
+                platform: "youtube",
+                trackCount: 29,
+                link: "https://youtube.com/playlist?list=example11",
+                icon: "🧮"
+            },
+            {
+                id: 12,
+                title: "Database Dreams",
+                description: "Chill and structured music for database design and optimization work.",
+                platform: "deezer",
+                trackCount: 44,
+                link: "https://deezer.com/playlist/example12",
+                icon: "🗄️"
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        function renderPlaylists(filter = 'all') {
+            const grid = document.getElementById('playlistsGrid');
+            const filteredPlaylists = filter === 'all' 
+                ? playlists 
+                : playlists.filter(p => p.platform === filter);
+
+            if (filteredPlaylists.length === 0) {
+                grid.innerHTML = '<div class="no-results">No playlists found for this platform</div>';
+                return;
+            }
+
+            grid.innerHTML = filteredPlaylists.map(playlist => `
+                <div class="playlist-card">
+                    <div class="playlist-image">${playlist.icon}</div>
+                    <div class="playlist-content">
+                        <h3 class="playlist-title">${playlist.title}</h3>
+                        <p class="playlist-description">${playlist.description}</p>
+                        <div class="playlist-meta">
+                            <span class="platform-badge platform-${playlist.platform}">
+                                ${playlist.platform}
+                            </span>
+                            <span class="track-count">${playlist.trackCount} tracks</span>
+                        </div>
+                        <a href="${playlist.link}" target="_blank" rel="noopener noreferrer" class="playlist-link" aria-label="Open ${playlist.title} playlist in ${playlist.platform} (opens in new window)">
+                            Listen Now ↗
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Set up filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active state
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Filter playlists
+                const platform = btn.dataset.platform;
+                currentFilter = platform;
+                renderPlaylists(platform);
+            });
+        });
+
+        // Initial render
+        renderPlaylists();
+    </script>
+</body>
+</html>

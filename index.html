@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="index">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Radio IT Learn</title>
     <style>
+        :root {
+            --bg: #0f172a;
+            --panel: #0b1220;
+            --muted: #94a3b8;
+            --muted-2: #c7d2fe;
+            --accent-500: #6366f1;
+            --accent-600: #4f46e5;
+            --accent-700: #4338ca;
+            --glass: rgba(49, 46, 129, 0.08);
+            --card: #0f172a;
+            --card-2: #0b1220;
+            --radius-lg: 14px;
+            --radius-md: 10px;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,7 +28,8 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-color: var(--bg);
+            color: #f8fafc;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -23,31 +39,32 @@
 
         .hero {
             text-align: center;
-            color: white;
+            color: #e6eefc;
             max-width: 800px;
         }
 
         h1 {
             font-size: 4em;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
             animation: fadeIn 1s ease-in;
         }
 
         .tagline {
             font-size: 1.5em;
             margin-bottom: 40px;
-            opacity: 0.95;
+            opacity: 0.9;
+            color: var(--muted-2);
             animation: fadeIn 1.5s ease-in;
         }
 
         .cta-button {
             display: inline-block;
             padding: 18px 40px;
-            background: white;
-            color: #667eea;
+            background: linear-gradient(90deg, var(--accent-600), var(--accent-500));
+            color: white;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: var(--radius-lg);
             font-size: 1.2em;
             font-weight: 700;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
@@ -58,7 +75,7 @@
         .cta-button:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
-            background: #f8f9fa;
+            background: linear-gradient(90deg, var(--accent-700), var(--accent-500));
         }
 
         .features {
@@ -71,9 +88,9 @@
         }
 
         .feature {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             padding: 20px;
-            border-radius: 15px;
+            border-radius: var(--radius-md);
             backdrop-filter: blur(10px);
             flex: 1;
             min-width: 200px;
@@ -89,11 +106,13 @@
             font-size: 1.2em;
             font-weight: 600;
             margin-bottom: 8px;
+            color: #fff;
         }
 
         .feature-desc {
             font-size: 0.95em;
-            opacity: 0.9;
+            opacity: 0.8;
+            color: var(--muted-2);
         }
 
         @keyframes fadeIn {
